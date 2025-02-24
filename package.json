@@ -16,6 +16,7 @@
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
-    "rahad-all-downloader": "^2.1.18"
+    "rahad-all-downloader": "^2.1.18",
+    "rahad-media-downloader": "^2.1.14"
   }
 }
