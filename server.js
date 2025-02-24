@@ -20,6 +20,10 @@ app.use((req, res, next) => {
     next();
 });
 
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
+
 app.get('/download',async(req,res)=>{
     const url = req.query.url;
     if(!url){
