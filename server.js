@@ -42,59 +42,59 @@ app.get('/download',async(req,res)=>{
 })
 
 // YouTube Download Endpoint
-app.get('/download/youtube', async (req, res) => {
-    const videoUrl = req.query.url;
+// app.get('/download/youtube', async (req, res) => {
+//     const videoUrl = req.query.url;
 
-    if (!videoUrl) {
-        return res.status(400).json({ error: 'Missing video URL' });
-    }
+//     if (!videoUrl) {
+//         return res.status(400).json({ error: 'Missing video URL' });
+//     }
 
-    try {
-        const data = await youtube(videoUrl);
-        console.log('Youtube Response:', data);
-         // Debugging log
+//     try {
+//         const data = await youtube(videoUrl);
+//         console.log('Youtube Response:', data);
+//          // Debugging log
 
-        if (!data || data.length === 0) {
-            return res.status(400).json({ error: 'Could not retrieve download link' });
-        }
+//         if (!data || data.length === 0) {
+//             return res.status(400).json({ error: 'Could not retrieve download link' });
+//         }
 
-        // Serve the Instagram video directly (if possible) or provide the download URL
-        res.header('Content-Disposition', 'attachment; filename="youtube_video.mp4"');
-        const downloadUrl = data[0].url;
-        const downloadStream = await fetch(downloadUrl);
-        downloadStream.body.pipe(res);
-    } catch (error) {
-        console.error('IGDL Error:', error);
-        return res.status(500).json({ error: 'Failed to process Instagram video' });
-    }
-});
+//         // Serve the Instagram video directly (if possible) or provide the download URL
+//         res.header('Content-Disposition', 'attachment; filename="youtube_video.mp4"');
+//         const downloadUrl = data[0].url;
+//         const downloadStream = await fetch(downloadUrl);
+//         downloadStream.body.pipe(res);
+//     } catch (error) {
+//         console.error('IGDL Error:', error);
+//         return res.status(500).json({ error: 'Failed to process Instagram video' });
+//     }
+// });
 
-// Instagram Video Download Endpoint
-app.get('/download/instagram', async (req, res) => {
-    const videoUrl = req.query.url;
+// // Instagram Video Download Endpoint
+// app.get('/download/instagram', async (req, res) => {
+//     const videoUrl = req.query.url;
 
-    if (!videoUrl) {
-        return res.status(400).json({ error: 'Missing video URL' });
-    }
+//     if (!videoUrl) {
+//         return res.status(400).json({ error: 'Missing video URL' });
+//     }
 
-    try {
-        const data = await igdl(videoUrl);
-        console.log('IGDL Response:', data); // Debugging log
+//     try {
+//         const data = await igdl(videoUrl);
+//         console.log('IGDL Response:', data); // Debugging log
 
-        if (!data || data.length === 0) {
-            return res.status(400).json({ error: 'Could not retrieve download link' });
-        }
+//         if (!data || data.length === 0) {
+//             return res.status(400).json({ error: 'Could not retrieve download link' });
+//         }
 
-        // Serve the Instagram video directly (if possible) or provide the download URL
-        res.header('Content-Disposition', 'attachment; filename="instagram_video.mp4"');
-        const downloadUrl = data[0].url;
-        const downloadStream = await fetch(downloadUrl);
-        downloadStream.body.pipe(res);
-    } catch (error) {
-        console.error('IGDL Error:', error);
-        return res.status(500).json({ error: 'Failed to process Instagram video' });
-    }
-});
+//         // Serve the Instagram video directly (if possible) or provide the download URL
+//         res.header('Content-Disposition', 'attachment; filename="instagram_video.mp4"');
+//         const downloadUrl = data[0].url;
+//         const downloadStream = await fetch(downloadUrl);
+//         downloadStream.body.pipe(res);
+//     } catch (error) {
+//         console.error('IGDL Error:', error);
+//         return res.status(500).json({ error: 'Failed to process Instagram video' });
+//     }
+// });
 
 // Start the Server
 app.listen(PORT, () => {
